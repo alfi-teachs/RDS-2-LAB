@@ -1,5 +1,124 @@
 # RDS-2-LAB
 
+# RDS-LAB-1
+
+# Step 1
+
+Go to AWS Console → EC2 → Launch Instance
+
+Configure:
+
+Name: any (e.g., rds-client)
+
+AMI: Amazon Linux 2
+
+Instance Type: t2.micro
+
+Key Pair: Create and download .pem
+
+Network Settings:
+
+Select your VPC
+Select Subnet (AZ)
+
+Security Group (Very Important):
+Add inbound rules:
+
+| type        | port         | source  |
+|-------------|--------------|---------|
+| SSH         | 22           | MY IP   |
+| CUSTOM TCP  | 8080         |  Anywhere (0.0.0.0/0) |
+
+
+Click Launch
+
+# Step 2: Connect to EC2
+```bash
+ssh -i key.pem ec2-user@<EC2-PUBLIC-IP>
+```
+  
+2. Switch to root user
+```bash
+sudo su
+```
+3. Update packages
+```bash
+yum update -y
+```
+# Step 3
+1. Install Docker
+```bash
+yum install docker -y
+```
+2. Start Docker service
+```bash
+systemctl start docker
+```
+3. Check Docker status
+```bash
+systemctl status docker
+```
+4. Enable Docker on boot (important)
+```bash
+systemctl enable docker
+```
+5. Test Docker
+```bash
+docker run hello-world
+```
+# Step 4
+
+Steps to Run phpMyAdmin using Docker
+
+1. Pull phpMyAdmin Image from Docker Hub
+
+```bash
+docker pull phpmyadmin/phpmyadmin
+```
+
+2. Verify Image Downloaded
+
+```bash
+docker images
+```
+
+4. Run phpMyAdmin Container
+   
+Usage with arbitrary server
+
+```bash
+docker run --name phpmyadmin -d -e PMA_ARBITRARY=1 -p 8080:80 phpmyadmin
+```
+What this does:
+
+--name phpmyadmin → container name
+
+-d → run in background
+
+-e PMA_ARBITRARY=1 → connect to any MySQL server
+
+-p 8080:80 → access via browser on port 8080
+
+4. Check Running Containers
+
+```bash
+docker ps
+```
+# Step 5
+
+1. Access phpMyAdmin in Browser
+
+```bash
+http://<EC2-PUBLIC-IP>:8080
+```
+# ⚠️ Important
+
+Make sure port 8080 is open in your EC2 Security Group
+
+You need a MySQL server to connect inside phpMyAdmin
+--------------------------------------------------------
+
+
 install PostgreSQL on Amazon Linux 2023
 
 Amazon Linux 2023 uses dnf + PostgreSQL modules, not the old packages.
