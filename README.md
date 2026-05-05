@@ -73,7 +73,7 @@ Steps to Run phpMyAdmin using Docker
 1. Pull phpMyAdmin Image from Docker Hub
 
 ```bash
-docker pull phpmyadmin/phpmyadmin
+docker pull phpmyadmin/phpmyadmin:fpm-alpine
 ```
 
 2. Verify Image Downloaded
@@ -87,7 +87,7 @@ docker images
 Usage with arbitrary server
 
 ```bash
-docker run --name phpmyadmin -d -e PMA_ARBITRARY=1 -p 8080:80 phpmyadmin
+docker run --name myadmin -d -e PMA_ARBITRARY=1 -p 8080:80 phpmyadmin
 ```
 What this does:
 
