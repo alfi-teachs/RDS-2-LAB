@@ -14,7 +14,11 @@ sudo systemctl start postgresql
 sudo systemctl enable postgresql
 # 🚀 Step 5: Switch user
 sudo su - postgres
-# 🚀 Step 6: Open PostgreSQL shell
+# step 6 :Check client (psql)
+psql --version
+# step 7 Check PostgreSQL service (server)
+systemctl status postgresql
+# 🚀 Step 8 : Open PostgreSQL shell
 psql
 
 Security Group (very important)
@@ -26,6 +30,9 @@ Add inbound rule:
 Type: PostgreSQL
 Port: 5432
 Source: your EC2 security group
+
+
+
 psql -h database-1.c1q0e0awq6n7.ap-south-1.rds.amazonaws.com -U admin -d postgres
 
 Enter password: admin12345
