@@ -117,27 +117,40 @@ Make sure port 8080 is open in your EC2 Security Group
 
 You need a MySQL server to connect inside phpMyAdmin
 --------------------------------------------------------
-
-
 install PostgreSQL on Amazon Linux 2023
 
 Amazon Linux 2023 uses dnf + PostgreSQL modules, not the old packages.
 
 # 🚀 Step 1: Install PostgreSQL (server + client)
+
 sudo dnf install postgresql15-server -y
+
 # 🚀 Step 2: Initialize database
+
 sudo /usr/bin/postgresql-setup --initdb
+
 # 🚀 Step 3: Start service
+
 sudo systemctl start postgresql
+
 # 🚀 Step 4: Enable on boot
+
 sudo systemctl enable postgresql
+
 # 🚀 Step 5: Switch user
+
 sudo su - postgres
+
 # step 6 :Check client (psql)
+
 psql --version
+
 # step 7 Check PostgreSQL service (server)
+
 systemctl status postgresql
+
 # 🚀 Step 8 : Open PostgreSQL shell
+
 psql
 
 Security Group (very important)
