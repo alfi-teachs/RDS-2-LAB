@@ -1,5 +1,35 @@
 # RDS-2-LAB
 
+install PostgreSQL on Amazon Linux 2023
+
+Amazon Linux 2023 uses dnf + PostgreSQL modules, not the old packages.
+
+# 🚀 Step 1: Install PostgreSQL (server + client)
+sudo dnf install postgresql15-server -y
+# 🚀 Step 2: Initialize database
+sudo /usr/bin/postgresql-setup --initdb
+# 🚀 Step 3: Start service
+sudo systemctl start postgresql
+# 🚀 Step 4: Enable on boot
+sudo systemctl enable postgresql
+# 🚀 Step 5: Switch user
+sudo su - postgres
+# 🚀 Step 6: Open PostgreSQL shell
+psql
+
+Security Group (very important)
+
+Go to RDS → Security Group:
+
+Add inbound rule:
+
+Type: PostgreSQL
+Port: 5432
+Source: your EC2 security group
+psql -h database-1.c1q0e0awq6n7.ap-south-1.rds.amazonaws.com -U admin -d postgres
+
+Enter password: admin12345
+
 
 Create database
 POSTGRES SQL
@@ -30,7 +60,13 @@ DB subnet group
 Public access: no 
 VPC security group (firewall)
 
+Choose existing
+Additional VPC security group: launch wizard4
+Availability Zone
 
+Additional Settings
+Keep everything default
+create database
 
 
 
