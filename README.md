@@ -162,11 +162,14 @@ Add inbound rule:
 Type: PostgreSQL
 Port: 5432
 Source: your EC2 security group
-
+```bash
 psql -h database-1.c1q0e0awq6n7.ap-south-1.rds.amazonaws.com -U admin -d postgres
+```
 
-Enter password: admin12345
-
+Enter password: 
+```bash
+admin12345
+```
 
 Create database
 
